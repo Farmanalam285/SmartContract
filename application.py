@@ -64,28 +64,32 @@ def AddOwner():
     phoneNo = request.form['phoneNo']
     linkedWallet = request.form['linkedWallet']
     balance = 0
-    applicationNo = request.form['applicationNo']
     query = "INSERT INTO DemoUser(Name,userName,password,PhoneNo,linkedWallet,isOwner) values('{0}','{1}','{2}','{3}','{4}',1);commit;"
-    query = query.format(firstName+' '+lastName,userName,password,phoneNo,linkedWallet,applicationNo)
+    query = query.format(firstName+' '+lastName,userName,password,phoneNo,linkedWallet,balance)
     test = db.session.execute(query)
-    uid = db.session.execute("select max(Uid) from DemoUser where userName='"+userName+"'").all()
-    propInsertQuery = "Insert into Property(Uid,Address,ApplicationNo) values('{0}','-','{1}');commit;"
-    propInsertQuery = propInsertQuery.format(uid[0][0],applicationNo)
-    test = db.session.execute(propInsertQuery)
+    # uid = db.session.execute("select max(Uid) from DemoUser where userName='"+userName+"'").all()
+    # propInsertQuery = "Insert into Property(Uid,Address,ApplicationNo) values('{0}','-','{1}');commit;"
+    # propInsertQuery = propInsertQuery.format(uid[0][0],applicationNo)
+    # test = db.session.execute(propInsertQuery)
     # test = db.session.execute
     return redirect(url_for('Owner'))
 
-@app.route('/addProperty')
-def addProperty():
+@app.route('/addProperty', methods = ['POST'])
+def AddProperty():
     propertyId = request.form['propertyId']
     linkedWallet = request.form['linkedWallet']
     isCurrentlyRented = request.form['isCurrentlyRented']
-    userName = request.form['userName']
+    if isCurrentlyRented == 'on':
+        isCurrentlyRented = 1
+    else :
+        isCurrentlyRented = 0
     rent = request.form['rent']
-    uid = db.session.execute("select max(Uid) from DemoUser where userName='"+userName+"'").all()
-    propInsertQuery = "Insert into Property(Uid,Address,ApplicationNo) values('{0}','-','{1}');commit;"
-    propInsertQuery = propInsertQuery.format(uid[0][0],propertyId)
+
+    propInsertQuery = "Insert into Property(propertyId,linkedWallet,isCurrentlyRented,rent) values('{0}','{1}','{2}','{3}');commit;"
+    propInsertQuery = propInsertQuery.format(propertyId, linkedWallet,isCurrentlyRented,rent)
     test = db.session.execute(propInsertQuery)
+    return redirect(url_for('Owner'))
+
 
 @app.route('/logout')
 def Logout():

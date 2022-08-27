@@ -8,21 +8,25 @@
     .flex-container {
         display: flex;
         flex-wrap: wrap;
+        margin:5%;
         /* background-color: #6a11cb; */
     }
 
-    .flex-container>div {
-        /* background-color: #0c0b0b; */
-        width: 40%;
-        margin: 10vw;
-        height: 40vh;
-        text-align: center;
-        line-height: 75px;
+    .gradient-custom {
+        /* fallback for old browsers */
+        background: #6a11cb;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
     }
+
 </style>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<body class="gradient-custom">
+    <nav class="gradient-custom navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -65,19 +69,21 @@
             </div>
         </div>
     </div>
+
     <div class="flex-container">
         {% for Property in properties %}
-            <div>
+            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                <div class="container">
                 <p>
-                    <label for="">{{Property.Name}}</label>
+                        <label for="">{{Property.propertyId}}</label>
                 </p>
-                <p>
-                    <label for="">{{Property.Address}}</label>
-                </p>
+                </div>
                 <p>
                     <button class="btn-danger btn-outline" id="rentOut" type="submit">Rent Out</button>
                     <button class="btn-danger btn-outline" id="rentClose" type="submit">Rent Close</button>
                 </p>
+                </div>
             </div>
         {% endfor %}
         
@@ -94,7 +100,7 @@
     <script>
         $(document).ready(function () {
             $("#addNewProperty").click(function () {
-                let tenantPopUp = '<form action="" method="POST">' +
+                let tenantPopUp = '<form action="{{url_for('AddProperty')}}" method="POST">' +
                         '<div class="form-group">' +
                             '<label>Property Id:</label><input class="form-control" name="propertyId" required="0" type="text">' +
                         '</div>' +
