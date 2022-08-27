@@ -1,0 +1,152 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    .gradient-custom {
+        /* fallback for old browsers */
+        background: #6a11cb;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+    }
+</style>
+
+<body>
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+
+                            <div class="mb-md-5 mt-md-4 pb-5">
+                                <form  method="post" action="{{url_for('Login')}}">
+                                    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                                    <p class="text-white-50 mb-5">Please enter your login and password!</p>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="email" id="typeEmailX" name="userName" class="form-control form-control-lg" />
+                                        <label class="form-label" for="typeEmailX">Email</label>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="password" id="typePasswordX" name="password" class="form-control form-control-lg" />
+                                        <label class="form-label" for="typePasswordX">Password</label>
+                                    </div>
+
+                                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot
+                                            password?</a></p>
+
+                                    <button class="btn btn-outline-light btn-lg px-5" id="login"
+                                        type="submit">Login</button>
+                                </form>
+                                <div class="d-flex justify-content-center text-center mt-4 pt-1">
+                                    <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                                    <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                                    <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                                </div>
+
+                            </div>
+
+                            <div>
+                                <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign
+                                        Up</a>
+                                </p>
+                                <p>
+                                    <button class="btn-danger btn-outline btn-sm px-5" id="tenant" data-toggle="modal"
+                                        data-target="#mymodal" type="submit">Tenant</button>
+                                    <button class="btn-danger btn-outline btn-sm px-5" id="owner" data-toggle="modal"
+                                        data-target="#mymodal" type="submit">Owner</button>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="mymodal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Please fill up the below details</h4>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#owner").click(function () {
+                let ownerPopUp = '<form action="{{url_for("AddOwner")}}" method="POST">' +
+                    '<div class="form-group">' +
+                    '<label>Name:</label><input class="form-control" name="name" required="0" type="text">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>User Name:</label><input class="form-control" name="userName" required="0" type="text">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Password:</label><input class="form-control" name="password" required="0" type="text">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Phone No:</label><input class="form-control" name="phoneNo" required="1" type="text">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Linked Wallet:</label><input class="form-control" name="linkedWallet" required="0" type="text">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Application No:</label><input class="form-control" name="applicationNo" required="1" type="text">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<button class="btn btn-primary" type="submit">Add Owner</button>' +
+                    '</div>' +
+                    '</form>';
+                $("#modalBody").html(ownerPopUp);
+            });
+            $("#tenant").click(function () {
+                let tenantPopUp = '<form action="{{url_for("AddTenant")}}" method="POST">' +
+                    '<div class="form-group">' +
+                    '<label>Name:</label><input class="form-control" name="name" required="0" type="text">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>User Name:</label><input class="form-control" name="userName" required="0" type="text">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Password:</label><input class="form-control" name="password" required="0" type="text">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Phone No:</label><input class="form-control" name="phoneNo" required="1" type="text">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Linked Wallet:</label><input class="form-control" name="linkedWallet" required="0" type="text">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<button class="btn btn-primary" type="submit">Add tenant</button>' +
+                    '</div>' +
+                    '</form>';
+                $("#modalBody").html(tenantPopUp);
+            });
+        });
+    </script>
+</body>
+</html>
