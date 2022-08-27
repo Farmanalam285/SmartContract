@@ -59,8 +59,8 @@ def AddTenant():
     phoneNo = request.form['phoneNo']
     linkedWallet = request.form['linkedWallet']
 
-    deploy.addTenant(linkedWallet, firstName, lastName, phoneNo, rating=0, rentalPoints=0, canRent=True, lastRentPaid=0,
-                     dueAmount=0)
+    #deploy.addTenant(linkedWallet, firstName, lastName, phoneNo, rating=0, rentalPoints=0, canRent=True, lastRentPaid=0,dueAmount=0)
+
 
     # query.format(name,userName,password,phoneNo,linkedWallet)
 
@@ -93,14 +93,14 @@ def AddProperty():
     linkedWallet = request.form['linkedWallet']
     isCurrentlyRented = request.form['isCurrentlyRented']
     if isCurrentlyRented == 'on':
-        isCurrentlyRented = 1
+        isCurrentlyRented = True
     else:
-        isCurrentlyRented = 0
+        isCurrentlyRented = False
     rent = request.form['rent']
 
-    deploy.addProperty(linkedWallet, propertyId, isCurrentlyRented, rent)
+    deploy.addProperty(linkedWallet,int(propertyId),bool(isCurrentlyRented),int(rent))
     propInsertQuery = "Insert into Property(propertyId,linkedWallet,isCurrentlyRented,rent) values('{0}','{1}','{2}','{3}');commit;"
-    propInsertQuery = propInsertQuery.format(propertyId, linkedWallet, isCurrentlyRented, rent)
+    propInsertQuery = propInsertQuery.format(propertyId, str(linkedWallet),int(isCurrentlyRented),str(rent))
     test = db.session.execute(propInsertQuery)
     return redirect(url_for('Owner'))
 
