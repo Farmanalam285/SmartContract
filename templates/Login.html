@@ -99,50 +99,53 @@
         $(document).ready(function () {
             $("#owner").click(function () {
                 let ownerPopUp = '<form action="{{url_for("AddOwner")}}" method="POST">' +
-                    '<div class="form-group">' +
-                    '<label>Name:</label><input class="form-control" name="name" required="0" type="text">' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                    '<label>User Name:</label><input class="form-control" name="userName" required="0" type="text">' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                    '<label>Password:</label><input class="form-control" name="password" required="0" type="text">' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                    '<label>Phone No:</label><input class="form-control" name="phoneNo" required="1" type="text">' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                    '<label>Linked Wallet:</label><input class="form-control" name="linkedWallet" required="0" type="text">' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                    '<label>Application No:</label><input class="form-control" name="applicationNo" required="1" type="text">' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                    '<button class="btn btn-primary" type="submit">Add Owner</button>' +
-                    '</div>' +
+                        '<div class="form-group">' +
+                            '<label>First Name:</label><input class="form-control" name="firstName" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Last Name:</label><input class="form-control" name="lastName" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>User Name:</label><input class="form-control" name="userName" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Password:</label><input class="form-control" name="password" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Phone No:</label><input class="form-control" name="phoneNo" required="1" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Linked Wallet:</label><input class="form-control" name="linkedWallet" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<button class="btn btn-primary" type="submit">Add Owner</button>' +
+                        '</div>' +
                     '</form>';
                 $("#modalBody").html(ownerPopUp);
             });
             $("#tenant").click(function () {
                 let tenantPopUp = '<form action="{{url_for("AddTenant")}}" method="POST">' +
-                    '<div class="form-group">' +
-                    '<label>Name:</label><input class="form-control" name="name" required="0" type="text">' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                    '<label>User Name:</label><input class="form-control" name="userName" required="0" type="text">' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                    '<label>Password:</label><input class="form-control" name="password" required="0" type="text">' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                    '<label>Phone No:</label><input class="form-control" name="phoneNo" required="1" type="text">' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                    '<label>Linked Wallet:</label><input class="form-control" name="linkedWallet" required="0" type="text">' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                    '<button class="btn btn-primary" type="submit">Add tenant</button>' +
-                    '</div>' +
+                        '<div class="form-group">' +
+                            '<label>First Name:</label><input class="form-control" name="firstName" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Last Name:</label><input class="form-control" name="lastName" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>User Name:</label><input class="form-control" name="userName" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Password:</label><input class="form-control" name="password" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Phone No:</label><input class="form-control" name="phoneNo" required="1" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Linked Wallet:</label><input class="form-control" name="linkedWallet" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<button class="btn btn-primary" type="submit">Add Owner</button>' +
+                        '</div>' +
                     '</form>';
                 $("#modalBody").html(tenantPopUp);
             });

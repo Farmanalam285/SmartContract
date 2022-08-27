@@ -46,27 +46,27 @@ def Tenant():
 
 @app.route('/addTenant',methods=['POST'])
 def AddTenant():
-    name = request.form['name']
+    firstName = request.form['firstName']
+    lastName = request.form['lastName']
     userName = request.form['userName']
     password = request.form['password']
     phoneNo = request.form['phoneNo']
     linkedWallet = request.form['linkedWallet']
-    query = "INSERT INTO DemoUser(Name,userName,password,PhoneNo,linkedWallet,isOwner) values('{0}','{1}','{2}','{3}','{4}','0');commit;"
-    query = query.format(name,userName,password,phoneNo,linkedWallet)
-    test = db.session.execute(query)
-    return redirect(url_for('Tenant'))
+
     # query.format(name,userName,password,phoneNo,linkedWallet)
 
 @app.route('/addOwner',methods=['POST'])
 def AddOwner():
-    name = request.form['name']
+    firstName = request.form['firstName']
+    lastName = request.form['lastName']
     userName = request.form['userName']
     password = request.form['password']
     phoneNo = request.form['phoneNo']
     linkedWallet = request.form['linkedWallet']
+    balance = 0
     applicationNo = request.form['applicationNo']
     query = "INSERT INTO DemoUser(Name,userName,password,PhoneNo,linkedWallet,isOwner) values('{0}','{1}','{2}','{3}','{4}',1);commit;"
-    query = query.format(name,userName,password,phoneNo,linkedWallet,applicationNo)
+    query = query.format(firstName+' '+lastName,userName,password,phoneNo,linkedWallet,applicationNo)
     test = db.session.execute(query)
     uid = db.session.execute("select max(Uid) from DemoUser where userName='"+userName+"'").all()
     propInsertQuery = "Insert into Property(Uid,Address,ApplicationNo) values('{0}','-','{1}');commit;"
@@ -74,6 +74,18 @@ def AddOwner():
     test = db.session.execute(propInsertQuery)
     # test = db.session.execute
     return redirect(url_for('Owner'))
+
+@app.route('/addProperty')
+def addProperty():
+    propertyId = request.form['propertyId']
+    linkedWallet = request.form['linkedWallet']
+    isCurrentlyRented = request.form['isCurrentlyRented']
+    userName = request.form['userName']
+    rent = request.form['rent']
+    uid = db.session.execute("select max(Uid) from DemoUser where userName='"+userName+"'").all()
+    propInsertQuery = "Insert into Property(Uid,Address,ApplicationNo) values('{0}','-','{1}');commit;"
+    propInsertQuery = propInsertQuery.format(uid[0][0],propertyId)
+    test = db.session.execute(propInsertQuery)
 
 @app.route('/logout')
 def Logout():
