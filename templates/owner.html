@@ -80,8 +80,8 @@
                 </p>
                 </div>
                 <p>
-                    <button class="btn-danger btn-outline" id="rentOut" type="submit">Rent Out</button>
-                    <button class="btn-danger btn-outline" id="rentClose" type="submit">Rent Close</button>
+                    <button class="btn-danger btn-outline" data-toggle="modal" data-target="#mymodal" id="rentOut" type="submit">Rent Out</button>
+                    <button class="btn-danger btn-outline" data-toggle="modal" data-target="#mymodal" id="rentClose" type="submit">Rent Close</button>
                 </p>
                 </div>
             </div>
@@ -100,7 +100,7 @@
     <script>
         $(document).ready(function () {
             $("#addNewProperty").click(function () {
-                let tenantPopUp = '<form action="{{url_for('AddProperty')}}" method="POST">' +
+                let tenantPopUp = '<form action="{{url_for("AddProperty")}}" method="POST">' +
                         '<div class="form-group">' +
                             '<label>Property Id:</label><input class="form-control" name="propertyId" required="0" type="text">' +
                         '</div>' +
@@ -118,6 +118,50 @@
                         '</div>' +
                     '</form>';
                 $("#modalBody").html(tenantPopUp);
+            });
+            $("#rentOut").click(function () {
+                let rentOutPopUp = '<form action="{{url_for("RentOut")}}" method="POST">' +
+                        '<div class="form-group">' +
+                            '<label>Property Id:</label><input class="form-control" name="propertyId" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Owner Linked Wallet:</label><input class="form-control" name="ownerLinkedWallet" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Tenant Linked Wallet:</label><input class="form-control" name="tenantLinkedWallet" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Start Date:</label><input class="form-control" name="startDate" required="0" type="date">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>End Date:</label><input class="form-control" name="endDate" required="0" type="date">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<button class="btn btn-primary" type="submit">Proceed</button>' +
+                        '</div>' +
+                    '</form>';
+                $("#modalBody").html(rentOutPopUp);
+            });
+
+            $("#rentClose").click(function () {
+                let rentOutPopUp = '<form action="{{url_for("RentClose")}}" method="POST">' +
+                        '<div class="form-group">' +
+                            '<label>Property Id:</label><input class="form-control" name="propertyId" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Tenant Linked Wallet:</label><input class="form-control" name="tenantLinkedWallet" required="0" type="text">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Cleanliness Rating:</label><input class="form-control" name="cleanlinessRating" required="0" type="range" min="0" max="5">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Neighbour Rating:</label><input class="form-control" name="neighbourRating" required="0" type="range" min="0" max="5">' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<button class="btn btn-primary" type="submit">Proceed</button>' +
+                        '</div>' +
+                    '</form>';
+                $("#modalBody").html(rentOutPopUp);
             });
         });
     </script>

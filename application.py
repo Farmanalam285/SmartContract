@@ -104,6 +104,20 @@ def AddProperty():
     test = db.session.execute(propInsertQuery)
     return redirect(url_for('Owner'))
 
+@app.route('/rentOut',methods = ['POST'])
+def RentOut():
+    propertyId =request.form['propertyId']
+    ownerLinkedWallet = request.form['ownerLinkedWallet']
+    tenantLinkedWallet = request.form['tenantLinkedWallet']
+    startDate = request.form['startDate']
+    endDate = request.form['endDate']
+
+@app.route('/rentClose',methods = ['POST'])
+def RentClose():
+    propertyId =request.form['propertyId']
+    cleanlinessRating = request.form['cleanlinessRating']
+    tenantLinkedWallet = request.form['tenantLinkedWallet']
+    neighbourRating = request.form['neighbourRating']
 
 @app.route('/logout')
 def Logout():
